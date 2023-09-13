@@ -12,7 +12,7 @@ Knowledge graphs play a fundamental role in various natural language understandi
 - **Repository Title**: [LibKGE](https://github.com/uma-pi1/kge)
   - **Description**: LibKGE - A knowledge graph embedding library for reproducible research .
 
-- **Repository Title**: [Evaluated Occupations](https://github.com/uclanlp/corefBias/tree/master/WinoBias/wino/data)
+- **Repository Title**: [WinoBias](https://github.com/uclanlp/corefBias/tree/master/WinoBias/wino/data)
   - **Description**: We use the stereotypical biased occupations from this dataset to evaluate our work.
   
 
