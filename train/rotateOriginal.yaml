@@ -1,0 +1,74 @@
+dataset:
+  name: ckbcOriginal
+  num_entities: 14541
+  num_relations: 237
+  test_size: 20466
+  train_size: 272115
+  valid_size: 17535
+entity_ranking:
+  chunk_size: 5000
+  metrics_per:
+    relation_type: true
+eval:
+  batch_size: 256
+import:
+- rotate
+- reciprocal_relations_model
+job:
+  device: cuda:0
+lookup_embedder:
+  dim: 256
+  initialize: xavier_normal_
+  initialize_args:
+    normal_:
+      mean: 0.0
+      std: 2.0846745139962994e-05
+    uniform_:
+      a: -0.838215168722691
+    xavier_normal_:
+      gain: 1.0
+    xavier_uniform_:
+      gain: 1.0
+model: reciprocal_relations_model
+negative_sampling:
+  implementation: triple
+  num_samples:
+    o: 292
+    s: 25
+reciprocal_relations_model:
+  base_model:
+    relation_embedder:
+      dim: 128
+    type: rotate
+rotate:
+  entity_embedder:
+    dropout: -0.20997447613626719
+    regularize_weight: 1.0112561331264489e-06
+  l_norm: 2.0
+  relation_embedder:
+    dropout: -0.17978530656546354
+    regularize_weight: 9.896801914862831e-18
+train:
+  auto_correct: true
+  batch_size: 128
+  loss: bce
+  loss_arg: 10.552413063123822
+  lr_scheduler: ReduceLROnPlateau
+  lr_scheduler_args:
+    factor: 0.95
+    mode: max
+    patience: 6
+    threshold: 0.0001
+  max_epochs: 400
+  optimizer:
+    default:
+      args:
+        lr: 0.22032075441824278
+  subbatch_auto_tune: true
+  type: negative_sampling
+valid:
+  early_stopping:
+    patience: 10
+    threshold:
+      epochs: 50
+      metric_value: 0.05
